@@ -70,19 +70,19 @@ class FlutterNetworkCapabilitiesPlugin : FlutterPlugin, MethodCallHandler {
                 connectivityManager.getNetworkCapabilities(connectivityManager.activeNetwork)
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
                 networkCapabilities?.let {
-                    networkInfoResult["signal_strength"] = it.signalStrength
-                    networkInfoResult["link_downstream_bandwidth_kbps"] =
+                    networkInfoResult["network_capabilities_signal_strength"] = it.signalStrength
+                    networkInfoResult["network_capabilities_link_downstream_bandwidth_kbps"] =
                         it.linkDownstreamBandwidthKbps
-                    networkInfoResult["link_upstream_bandwidth_kbps"] = it.linkUpstreamBandwidthKbps
+                    networkInfoResult["network_capabilities_link_upstream_bandwidth_kbps"] = it.linkUpstreamBandwidthKbps
                 }
             }
 
             when {
                 networkCapabilities?.hasTransport(NetworkCapabilities.TRANSPORT_WIFI) == true ->
-                    networkInfoResult["transport_type"] = "wifi"
+                    networkInfoResult["network_capabilities_transport_type"] = "wifi"
 
                 networkCapabilities?.hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR) == true ->
-                    networkInfoResult["transport_type"] = "cellular"
+                    networkInfoResult["network_capabilities_transport_type"] = "cellular"
             }
         }
 
@@ -91,12 +91,12 @@ class FlutterNetworkCapabilitiesPlugin : FlutterPlugin, MethodCallHandler {
         if (networkInfo != null && networkInfo.isConnected) {
             when (networkInfo.type) {
                 ConnectivityManager.TYPE_MOBILE -> {
-                    networkInfoResult["transport_type"] = "celullar"
-                    networkInfoResult["transport_subtype"] =
+                    networkInfoResult["network_info_transport_type"] = "celullar"
+                    networkInfoResult["network_info_transport_type_subtype"] =
                         networkMobileSubtypes[networkInfo.subtype] ?: "unknown"
                 }
 
-                ConnectivityManager.TYPE_WIFI -> networkInfoResult["transport_subtype"] = "wifi"
+                ConnectivityManager.TYPE_WIFI -> networkInfoResult["network_info_transport_type"] = "wifi"
             }
         }
 
