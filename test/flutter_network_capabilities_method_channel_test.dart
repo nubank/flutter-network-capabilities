@@ -10,7 +10,7 @@ void main() {
 
   setUp(() {
     channel.setMockMethodCallHandler((MethodCall methodCall) async {
-      return '42';
+      return {"testing": "testing"};
     });
   });
 
@@ -18,7 +18,8 @@ void main() {
     channel.setMockMethodCallHandler(null);
   });
 
-  test('getPlatformVersion', () async {
-    expect(await platform.getPlatformVersion(), '42');
+  test('getNetworkInfo', () async {
+    expect(await platform.getNetworkInfo(), {"testing": "testing"});
+    // expect(true, true);
   });
 }

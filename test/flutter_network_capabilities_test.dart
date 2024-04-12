@@ -9,7 +9,7 @@ class MockFlutterNetworkCapabilitiesPlatform
     implements FlutterNetworkCapabilitiesPlatform {
 
   @override
-  Future<String?> getPlatformVersion() => Future.value('42');
+  Future<Map<String, String>> getNetworkInfo() => Future.value({"testing": "testing"});
 }
 
 void main() {
@@ -19,11 +19,11 @@ void main() {
     expect(initialPlatform, isInstanceOf<MethodChannelFlutterNetworkCapabilities>());
   });
 
-  test('getPlatformVersion', () async {
+  test('getNetworkInfo', () async {
     FlutterNetworkCapabilities flutterNetworkCapabilitiesPlugin = FlutterNetworkCapabilities();
     MockFlutterNetworkCapabilitiesPlatform fakePlatform = MockFlutterNetworkCapabilitiesPlatform();
     FlutterNetworkCapabilitiesPlatform.instance = fakePlatform;
 
-    expect(await flutterNetworkCapabilitiesPlugin.getPlatformVersion(), '42');
+    expect(await flutterNetworkCapabilitiesPlugin.getNetworkInfo(), {"testing": "testing"});
   });
 }

@@ -16,7 +16,7 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  String _platformVersion = 'Unknown';
+  Map<String, String> _networkInfo = {};
   final _flutterNetworkCapabilitiesPlugin = FlutterNetworkCapabilities();
 
   @override
@@ -27,15 +27,14 @@ class _MyAppState extends State<MyApp> {
 
   // Platform messages are asynchronous, so we initialize in an async method.
   Future<void> initPlatformState() async {
-    String platformVersion;
+    Map<String, String> networkInfo;
     // Platform messages may fail, so we use a try/catch PlatformException.
     // We also handle the message potentially returning null.
     try {
-      platformVersion =
-          await _flutterNetworkCapabilitiesPlugin.getPlatformVersion() ??
-              'Unknown platform version';
+      networkInfo =
+          await _flutterNetworkCapabilitiesPlugin.getNetworkInfo();
     } on PlatformException {
-      platformVersion = 'Failed to get platform version.';
+      networkInfo = {};
     }
 
     // If the widget was removed from the tree while the asynchronous platform
@@ -44,7 +43,7 @@ class _MyAppState extends State<MyApp> {
     if (!mounted) return;
 
     setState(() {
-      _platformVersion = platformVersion;
+      _networkInfo = networkInfo;
     });
   }
 
@@ -56,7 +55,7 @@ class _MyAppState extends State<MyApp> {
           title: const Text('Plugin example app'),
         ),
         body: Center(
-          child: Text('Running on: $_platformVersion\n'),
+          child: Text('With this network: $_networkInfo\n'),
         ),
         floatingActionButton: FloatingActionButton(
           child: const Icon(Icons.network_cell),

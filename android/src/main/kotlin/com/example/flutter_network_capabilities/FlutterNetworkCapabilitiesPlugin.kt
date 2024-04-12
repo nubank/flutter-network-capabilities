@@ -63,7 +63,7 @@ class FlutterNetworkCapabilitiesPlugin : FlutterPlugin, MethodCallHandler {
             result.notImplemented()
         }
 
-        val networkInfoResult = mutableMapOf<String, Any>()
+        val networkInfoResult = mutableMapOf<String, String>()
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             val networkCapabilities =
