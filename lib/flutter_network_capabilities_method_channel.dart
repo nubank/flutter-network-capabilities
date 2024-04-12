@@ -1,5 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
+import 'dart:io' show Platform;
 
 import 'flutter_network_capabilities_platform_interface.dart';
 
@@ -10,8 +11,12 @@ class MethodChannelFlutterNetworkCapabilities extends FlutterNetworkCapabilities
   final methodChannel = const MethodChannel('flutter_network_capabilities');
 
   @override
-  Future<String?> getPlatformVersion() async {
-    final version = await methodChannel.invokeMethod<String>('getPlatformVersion');
-    return version;
+  Future<String?> getNetworkInfo() async {
+    if (Platform.isIOS) {
+        return Future.value(""); 
+    }
+    final networkInfo = await methodChannel.invokeMethod<String>('getNetworkInfo');
+    return networkInfo;
   }
+  
 }

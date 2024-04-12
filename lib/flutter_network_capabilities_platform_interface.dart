@@ -23,7 +23,7 @@ abstract class FlutterNetworkCapabilitiesPlatform extends PlatformInterface {
     _instance = instance;
   }
 
-  Future<String?> getPlatformVersion() {
-    throw UnimplementedError('platformVersion() has not been implemented.');
+  Future<Map<String, String>> getNetworkInfo() {
+    throw UnimplementedError('getNetworkInfo() has not been implemented.');
   }
 }
