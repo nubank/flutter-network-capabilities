@@ -70,10 +70,12 @@ class FlutterNetworkCapabilitiesPlugin : FlutterPlugin, MethodCallHandler {
                 connectivityManager.getNetworkCapabilities(connectivityManager.activeNetwork)
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
                 networkCapabilities?.let {
-                    networkInfoResult["signal_strength"] = it.signalStrength
+                    networkInfoResult["signal_strength"] =
+                        "${it.signalStrength}"
                     networkInfoResult["link_downstream_bandwidth_kbps"] =
-                        it.linkDownstreamBandwidthKbps
-                    networkInfoResult["link_upstream_bandwidth_kbps"] = it.linkUpstreamBandwidthKbps
+                        "${it.linkDownstreamBandwidthKbps}"
+                    networkInfoResult["link_upstream_bandwidth_kbps"] =
+                        "${it.linkUpstreamBandwidthKbps}"
                 }
             }
 
@@ -91,12 +93,13 @@ class FlutterNetworkCapabilitiesPlugin : FlutterPlugin, MethodCallHandler {
         if (networkInfo != null && networkInfo.isConnected) {
             when (networkInfo.type) {
                 ConnectivityManager.TYPE_MOBILE -> {
-                    networkInfoResult["legacy_transport_type"] = "celullar"
+                    networkInfoResult["legacy_transport_type"] = "cellular"
                     networkInfoResult["legacy_transport_subtype"] =
                         networkMobileSubtypes[networkInfo.subtype] ?: "unknown"
                 }
 
-                ConnectivityManager.TYPE_WIFI -> networkInfoResult["legacy_transport_type"] = "wifi"
+                ConnectivityManager.TYPE_WIFI -> networkInfoResult["legacy_transport_type"] =
+                    "wifi"
             }
         }
 
