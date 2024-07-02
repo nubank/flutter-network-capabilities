@@ -1,4 +1,4 @@
-package com.example.flutter_network_capabilities
+package com.nubank.flutter_network_capabilities
 
 import android.content.Context
 import android.net.ConnectivityManager

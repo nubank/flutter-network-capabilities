@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.flutter_network_capabilities_example">
+    package="com.nubank.flutter_network_capabilities_example">
    <application
         android:label="flutter_network_capabilities_example"
         android:name="${applicationName}"
