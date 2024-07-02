@@ -20,6 +20,5 @@ void main() {
 
   test('getNetworkInfo', () async {
     expect(await platform.getNetworkInfo(), {"testing": "testing"});
-    // expect(true, true);
   });
 }
