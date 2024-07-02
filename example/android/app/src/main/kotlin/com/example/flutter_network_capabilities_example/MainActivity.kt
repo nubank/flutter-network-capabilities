@@ -1,4 +1,4 @@
-package com.example.flutter_network_capabilities_example
+package com.nubank.flutter_network_capabilities_example
 
 import io.flutter.embedding.android.FlutterActivity
 
