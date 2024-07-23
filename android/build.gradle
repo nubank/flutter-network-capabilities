@@ -1,4 +1,4 @@
-group 'com.nubank.flutter_network_capabilities'
+group 'com.nu.flutter_network_capabilities'
 version '1.0-SNAPSHOT'
 
 buildscript {
@@ -27,6 +27,7 @@ apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 
 android {
+    namespace 'com.nu.flutter_network_capabilities'
     compileSdkVersion 33
 
     compileOptions {
