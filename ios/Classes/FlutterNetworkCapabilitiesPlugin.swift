@@ -32,7 +32,6 @@ public class FlutterNetworkCapabilitiesPlugin: NSObject, FlutterPlugin {
     //        }
     //    }
     
-    // TODO: adjust signature to map
     private func getNetworkInfoResult() -> [String : String] {
         guard let reachability = SCNetworkReachabilityCreateWithName(kCFAllocatorDefault, "www.google.com") else {
             return [:]
@@ -53,15 +52,15 @@ public class FlutterNetworkCapabilitiesPlugin: NSObject, FlutterPlugin {
                     let radioAccessTechnology = networkInfo.serviceCurrentRadioAccessTechnology
                     if let radioAccessTypeName = radioAccessTechnology?.first?.value {
                         let transportSubType: String?
-                        // TODO: mapear igual Android
-    //                    switch radioAccessTypeName {
-    //                        case CTRadioAccessTechnologyGPRS, CTRadioAccessTechnologyEdge, CTRadioAccessTechnologyCDMA1x:
-    //                            return "2G"
-    //                        case CTRadioAccessTechnologyLTE:
-    //                            return "4G"
-    //                        default:
-    //                            return "3G"
-    //                    }
+                        networkInfoResult["transport_subtype"] = radioAccessTypeName
+//                        switch radioAccessTypeName {
+//                            case CTRadioAccessTechnologyGPRS, CTRadioAccessTechnologyEdge, CTRadioAccessTechnologyCDMA1x:
+//                                return "2G"
+//                            case CTRadioAccessTechnologyLTE:
+//                                return "4G"
+//                            default:
+//                                return "3G"
+//                        }
                     }
                     
                     networkInfoResult["transport_subtype"] = "unknwon"
