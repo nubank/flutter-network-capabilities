@@ -19,19 +19,6 @@ public class FlutterNetworkCapabilitiesPlugin: NSObject, FlutterPlugin {
         result(getNetworkInfoResult())
     }
     
-    //    private func getTelephonyNetworkInfo() {
-    //        let networkInfo = CTTelephonyNetworkInfo()
-    //        let networkString = networkInfo.currentRadioAccessTechnology
-    //
-    //        if networkString == CTRadioAccessTechnologyLTE{
-    //          // LTE (4G)
-    //        }else if networkString == CTRadioAccessTechnologyWCDMA{
-    //          // 3G
-    //        }else if networkString == CTRadioAccessTechnologyEdge{
-    //          // EDGE (2G)
-    //        }
-    //    }
-    
     private func getNetworkInfoResult() -> [String : String] {
         guard let reachability = SCNetworkReachabilityCreateWithName(kCFAllocatorDefault, "www.google.com") else {
             return [:]
@@ -51,19 +38,13 @@ public class FlutterNetworkCapabilitiesPlugin: NSObject, FlutterPlugin {
                 if #available(iOS 12.0, *) {
                     let radioAccessTechnology = networkInfo.serviceCurrentRadioAccessTechnology
                     if let radioAccessTypeName = radioAccessTechnology?.first?.value {
-                        let transportSubType: String?
-                        networkInfoResult["transport_subtype"] = radioAccessTypeName
-//                        switch radioAccessTypeName {
-//                            case CTRadioAccessTechnologyGPRS, CTRadioAccessTechnologyEdge, CTRadioAccessTechnologyCDMA1x:
-//                                return "2G"
-//                            case CTRadioAccessTechnologyLTE:
-//                                return "4G"
-//                            default:
-//                                return "3G"
-//                        }
+                            
+                        networkInfoResult["transport_subtype"] = radioAccessTypeName.lowercased().replacingOccurrences(of: "ctradioaccesstechnology", with: "network_type_")
+                    
+                    } else {
+                        networkInfoResult["transport_subtype"] = "unknown"
                     }
                     
-                    networkInfoResult["transport_subtype"] = "unknwon"
                 }
             } else {
                 networkInfoResult["transport_type"] = "wifi"
@@ -76,7 +57,3 @@ public class FlutterNetworkCapabilitiesPlugin: NSObject, FlutterPlugin {
         return [:]
     }
 }
-    
-    /**
-     following: CTRadioAccessTechnologyGPRS, CTRadioAccessTechnologyEdge, CTRadioAccessTechnologyCDMA1x -> 2g. CTRadioAccessTechnologyWCDMA, CTRadioAccessTechnologyHSDPA, CTRadioAccessTechnologyHSUPA, CTRadioAccessTechnologyCDMAEVDORev0, CTRadioAccessTechnologyCDMAEVDORevA, CTRadioAccessTechnologyCDMAEVDORevB, CTRadioAccessTechnologyeHRPD -> 3G CTRadioAccessTechnologyLTE -> 4G else -> 5G.
-     */
