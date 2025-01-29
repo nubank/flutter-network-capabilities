@@ -1,7 +1,7 @@
 name: flutter_network_capabilities
 description: A new Flutter plugin project.
 version: 0.0.1
-homepage:
+homepage: https://github.com/nubank/flutter-network-capabilities
 
 environment:
   sdk: '>=2.19.6 <3.0.0'

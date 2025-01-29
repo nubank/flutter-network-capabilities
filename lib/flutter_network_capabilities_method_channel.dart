@@ -1,6 +1,5 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
-import 'dart:io' show Platform;
 
 import 'flutter_network_capabilities_platform_interface.dart';
 
