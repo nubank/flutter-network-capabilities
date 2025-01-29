@@ -1,6 +1,6 @@
 ## Introduction
 --------
-This package allows monitoring of Network Capabilities from Android devices.
+This package allows monitoring of Network Capabilities from Android and iOS devices.
 
 ## Features
 --------
