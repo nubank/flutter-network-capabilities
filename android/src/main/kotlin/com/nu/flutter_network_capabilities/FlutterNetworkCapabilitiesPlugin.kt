@@ -11,7 +11,7 @@ import io.flutter.plugin.common.MethodChannel
 import io.flutter.plugin.common.MethodChannel.MethodCallHandler
 
 /** FlutterNetworkCapabilitiesPlugin */
-class FlutterNetworkCapabilitiesPlugin : FlutterPlugin, MethodCallHandler {
+public class FlutterNetworkCapabilitiesPlugin : FlutterPlugin, MethodCallHandler {
     private lateinit var channel: MethodChannel
     private lateinit var connectivityManager: ConnectivityManager
 
