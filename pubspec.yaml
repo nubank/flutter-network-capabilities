@@ -1,6 +1,6 @@
 name: flutter_network_capabilities
 description: This package allows monitoring of Network Capabilities from Android and iOS devices.
-version: 0.0.1
+version: 0.0.2
 homepage: https://nubank.com/ 
 repository: https://github.com/nubank/flutter-network-capabilities
 
