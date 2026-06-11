@@ -12,11 +12,13 @@ public class FlutterNetworkCapabilitiesPlugin: NSObject, FlutterPlugin {
     }
     
     public func handle(_ call: FlutterMethodCall, result: @escaping FlutterResult) {
-        if (call.method != "getNetworkInfo") {
+        if call.method != "getNetworkInfo" {
             result(FlutterMethodNotImplemented)
             return
         }
-        result(getNetworkInfoResult())
+        DispatchQueue.global(qos: .utility).async {
+            result(self.getNetworkInfoResult())
+        }
     }
     
     private func getNetworkInfoResult() -> [String : String] {
@@ -48,7 +50,7 @@ public class FlutterNetworkCapabilitiesPlugin: NSObject, FlutterPlugin {
                 }
             } else {
                 networkInfoResult["transport_type"] = "wifi"
-                networkInfoResult["transport_subtype"] = "unknwon"
+                networkInfoResult["transport_subtype"] = "unknown"
             }
             
             return networkInfoResult
