@@ -12,13 +12,17 @@ class MethodChannelFlutterNetworkCapabilities
 
   @override
   Future<Map<String, String>> getNetworkInfo() async {
-    final networkInfo = await methodChannel
-        .invokeMapMethod<String, String>('getNetworkInfo');
+    try {
+      final networkInfo = await methodChannel
+          .invokeMapMethod<String, String>('getNetworkInfo');
 
-    if (networkInfo == null) {
+      if (networkInfo == null) {
+        return {};
+      }
+
+      return networkInfo;
+    } catch (e) {
       return {};
     }
-
-    return networkInfo;
   }
 }

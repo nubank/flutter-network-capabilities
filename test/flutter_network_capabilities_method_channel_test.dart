@@ -21,4 +21,18 @@ void main() {
   test('getNetworkInfo', () async {
     expect(await platform.getNetworkInfo(), {"testing": "testing"});
   });
+
+  test('getNetworkInfo returns empty map when native returns null', () async {
+    channel.setMockMethodCallHandler((MethodCall methodCall) async => null);
+
+    expect(await platform.getNetworkInfo(), isEmpty);
+  });
+
+  test('getNetworkInfo returns empty map on PlatformException', () async {
+    channel.setMockMethodCallHandler((MethodCall methodCall) async {
+      throw PlatformException(code: 'UNAVAILABLE');
+    });
+
+    expect(await platform.getNetworkInfo(), isEmpty);
+  });
 }
